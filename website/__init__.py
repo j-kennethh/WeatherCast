@@ -1,9 +1,9 @@
-from flask import Flask, Blueprint, render_template
+from flask import Flask, Blueprint
 
 def create():
     app = Flask(__name__)
 
-    from .auth import auth
-    app.register_blueprint(auth, url_prefix='/')
+    from .view import view
+    app.register_blueprint(view, url_prefix='/')
 
     return app
