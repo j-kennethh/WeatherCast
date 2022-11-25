@@ -2,3 +2,11 @@ nav .navbar-brand
 {
     font-size: xx-large;
 }
+nav .navbar-brand .blue
+{
+    color: #033F63;
+}
+nav .navbar-brand .sage
+{
+    color: #7c9885;
+}
