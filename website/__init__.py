@@ -1,10 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, Blueprint, render_template
 
 def create():
     app = Flask(__name__)
 
-    @app.route('/')
-    def index():
-        return render_template('layout.html')
+    from .auth import auth
+    app.register_blueprint(auth, url_prefix='/')
 
     return app
