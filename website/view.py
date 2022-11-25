@@ -1,8 +1,11 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, request, render_template
 
 view = Blueprint('view', __name__)
 
 
-@view.route('/', methods=['GET'])
+@view.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('layout.html')
+    if request.method == 'POST':
+        pass
+    else: 
+        return render_template('index.html')
