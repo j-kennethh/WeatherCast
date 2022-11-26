@@ -8,19 +8,33 @@ view = Blueprint('view', __name__)
 def index():
     if request.method == 'POST':
         city = request.form.get('city')
-        return redirect(url_for('view.weather', city=city))
+        country = request.form.get('country')
+
+        if not city:
+            flash('Must provide a city.', category='error')
+            return redirect(url_for('view.index'))
+        
+        if not country:
+            flash('Must provide a country code.', category='error')
+            return redirect(url_for('view.index'))
+
+        if len(country) != 2:
+            flash('Country code must be 2 letters.', category='error')
+            return redirect(url_for('view.index'))
+
+        return redirect(url_for('view.weather', country=country, city=city))
     else: 
         return render_template('index.html')
 
 
-@view.route('/weather/<city>', methods=['GET'])
-def weather(city):
+@view.route('/weather/<country>/<city>', methods=['GET'])
+def weather(country, city):
     API_KEY = 'fa8939ac34315fc99e926f80094f1da3'
-    geo_api = f'http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={API_KEY}'
+    geo_api = f'http://api.openweathermap.org/geo/1.0/direct?q={city},{country}&limit=1&appid={API_KEY}'
     geo_res = requests.get(geo_api).json()
 
     if not geo_res:
-        flash('Invalid city name, try again.', category='error')
+        flash('Invalid city name or country code, please try again.', category='error')
         return redirect(url_for('view.index'))
     else:
         geo_res = geo_res[0]
