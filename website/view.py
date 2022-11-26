@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, url_for, render_template
+from flask import Blueprint, request, redirect, url_for, render_template, flash
 import requests
 
 view = Blueprint('view', __name__)
@@ -8,7 +8,7 @@ view = Blueprint('view', __name__)
 def index():
     if request.method == 'POST':
         city = request.form.get('city')
-        return redirect(f'/weather/{city}')
+        return redirect(url_for('view.weather', city=city))
     else: 
         return render_template('index.html')
 
@@ -17,6 +17,12 @@ def index():
 def weather(city):
     API_KEY = 'fa8939ac34315fc99e926f80094f1da3'
     geo_api = f'http://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={API_KEY}'
-    geo_res = requests.get(geo_api).json()[0]
+    geo_res = requests.get(geo_api).json()
+
+    if not geo_res:
+        flash('Invalid city name, try again.', category='error')
+        return redirect(url_for('view.index'))
+    else:
+        geo_res = geo_res[0]
 
     return render_template('weather.html', data=geo_res)
