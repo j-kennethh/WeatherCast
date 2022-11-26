@@ -16,6 +16,11 @@ def index():
         name, country, lat, lon = geo_res['name'], geo_res['country'], geo_res['lat'], geo_res['lon']
 
         print(f'City: {name}\nCountry: {country}\nLatitude: {lat}\nLongitude: {lon}')
-        return redirect(url_for('view.index'))
+        return redirect(f'/weather/{lat}/{lon}')
     else: 
         return render_template('index.html')
+
+
+@view.route('/weather/<lat>/<lon>', methods=['GET'])
+def weather(lat, lon):
+    return render_template('weather.html', lat=lat, lon=lon)
