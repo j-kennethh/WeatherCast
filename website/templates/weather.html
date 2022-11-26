@@ -3,6 +3,8 @@
 {% block title %}Weather{% endblock %}
 
 {% block main %}
-    <h3>Latitude: {{ lat }}</h3>
-    <h3>Longitude: {{ lon }}</h3>
+    <div class="mb-3">
+        <h3>{{ data.name }}, {{ data.country }}</h3>
+    </div>
+    <p>Latitude: {{ data.lat }} | Longitude: {{ data.lon }}</p>
 {% endblock %}
