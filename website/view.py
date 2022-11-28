@@ -1,5 +1,5 @@
 from flask import Blueprint, request, redirect, url_for, render_template, flash
-import requests
+import requests, pprint
 from . import config
 
 view = Blueprint('view', __name__)
@@ -38,5 +38,10 @@ def weather(country, city):
         return redirect(url_for('view.index'))
     else:
         geo_res = geo_res[0]
+        city, country, lat, lon = geo_res['name'], geo_res['country'], round(float(geo_res['lat']), 2), round(float(geo_res['lon']), 2)
 
-    return render_template('weather.html', data=geo_res)
+        weather_api = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,windspeed_10m_max,winddirection_10m_dominant&timezone=auto'
+        weather_res = requests.get(weather_api).json()
+        pprint.pprint(weather_res)
+
+        return render_template('weather.html', city=city, country=country, lat=lat, lon=lon)
