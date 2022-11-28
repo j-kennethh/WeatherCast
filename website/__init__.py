@@ -1,8 +1,9 @@
 from flask import Flask, Blueprint
+from . import config
 
 def create():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'fa8939ac34315fc99e926f80094f1da3'
+    app.config['SECRET_KEY'] = config.API_KEY
 
     from .view import view
     app.register_blueprint(view, url_prefix='/')

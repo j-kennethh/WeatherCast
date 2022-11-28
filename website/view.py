@@ -1,5 +1,6 @@
 from flask import Blueprint, request, redirect, url_for, render_template, flash
 import requests
+from . import config
 
 view = Blueprint('view', __name__)
 
@@ -29,8 +30,7 @@ def index():
 
 @view.route('/weather/<country>/<city>', methods=['GET'])
 def weather(country, city):
-    API_KEY = 'fa8939ac34315fc99e926f80094f1da3'
-    geo_api = f'http://api.openweathermap.org/geo/1.0/direct?q={city},{country}&limit=1&appid={API_KEY}'
+    geo_api = f'http://api.openweathermap.org/geo/1.0/direct?q={city},{country}&limit=1&appid={config.API_KEY}'
     geo_res = requests.get(geo_api).json()
 
     if not geo_res:
