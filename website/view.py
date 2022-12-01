@@ -44,4 +44,43 @@ def weather(country, city):
         weather_res = requests.get(weather_api).json()
         pprint.pprint(weather_res)
 
-        return render_template('weather.html', city=city, country=country, lat=lat, lon=lon, data=weather_res)
+        photo = {
+            0: 'clear.png',
+
+            1: 'mainly-clear.png',
+            2: 'partly-cloudy.png',
+            3: 'overcast.png',
+
+            45: 'fog.png',
+            48: 'fog.png',
+
+            51: 'drizzle.png',
+            53: 'drizzle.png',
+            55: 'drizzle.png',
+            56: 'drizzle.png',
+            57: 'drizzle.png',
+
+            61: 'rain.png',
+            63: 'rain.png',
+            65: 'rain.png',
+            66: 'rain.png',
+            67: 'rain.png',
+
+            71: 'snow.png',
+            73: 'snow.png',
+            75: 'snow.png',
+            77: 'snow.png',
+            85: 'snow.png',
+            86: 'snow.png',
+
+            80: 'storm.png',
+            81: 'storm.png',
+            82: 'storm.png',
+            95: 'storm.png',
+            96: 'storm.png',
+            99: 'storm.png',
+        }
+
+        filename = url_for('static', filename=f'{photo[weather_res["current_weather"]["weathercode"]]}')
+
+        return render_template('weather.html', city=city, country=country, data=weather_res, filename=filename)
