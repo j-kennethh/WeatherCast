@@ -6,8 +6,9 @@
     <div class="mb-3">
         <h3>{{ city }}, {{ country }}</h3>
     </div>
+    <p>Temperature: {{ data.current_weather.temperature }}°C |  Wind: {{ data.current_weather.windspeed }} km/h at {{ data.current_weather.winddirection }}°</p>
+    <div class="mb-3">
+        <img src="{{ filename }}" alt="weather" width="180" height="180"/>
+    </div>
     <p>Coordinates: {{ data.latitude | round(2) }}°N {{ data.longitude | round(2) }}°E | Elevation: {{ data.elevation }}m</p>
-    <img src="{{ filename }}" alt="weather" width="180" height="180"/>
-    <p>Temperature: {{ data.current_weather.temperature }}°C </p>
-    <p>Wind: {{ data.current_weather.windspeed }} km/h at {{ data.current_weather.winddirection }}°</p>
 {% endblock %}
