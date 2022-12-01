@@ -39,9 +39,9 @@ def weather(country, city):
     else:
         geo_res = geo_res[0]
         city, country, lat, lon = geo_res['name'], geo_res['country'], round(float(geo_res['lat']), 2), round(float(geo_res['lon']), 2)
-        
-        weather_api = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true&timezone=auto'
+
+        weather_api = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true&timeformat=unixtime&timezone=auto'
         weather_res = requests.get(weather_api).json()
         pprint.pprint(weather_res)
 
-        return render_template('weather.html', city=city, country=country, lat=lat, lon=lon)
+        return render_template('weather.html', city=city, country=country, lat=lat, lon=lon, data=weather_res)
