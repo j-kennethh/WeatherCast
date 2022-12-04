@@ -6,18 +6,23 @@
     <div class="mb-3">
         <h1>{{ city }}, {{ country }}</h1>
     </div>
-    <div class="mb-3">
-        <div class="row align-items-center justify-content-evenly">
-            <div class="col">
-                <img src="{{ filename }}" alt="weather" width="120" height="120"/>
-            </div>
-            <div class="col">
-                <h2>{{ data.current_weather.temperature }}°C</h2>
-                <p> Wind: {{ data.current_weather.windspeed }} km/h at {{ data.current_weather.winddirection }}°</p>
-            </div>
-        </div>
+    <div class="mb-3 text-muted">
+        <p>{{ data.latitude | round(2) }}°N {{ data.longitude | round(2) }}°E</p>
     </div>
     <div class="mb-3">
-        <p>{{ data.latitude | round(2) }}°N {{ data.longitude | round(2) }}°E</p>
+        <div class="mb-3">
+            <div class="row align-items-center justify-content-evenly">
+                <div class="col">
+                    <img src="{{ filename }}" alt="weather" width="120" height="120"/>
+                </div>
+                <div class="col">
+                    <h2>{{ data.current_weather.temperature }}°C</h2>
+                    <p>{{ desc }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <p> Wind: {{ data.current_weather.windspeed }} km/h at {{ data.current_weather.winddirection }}°</p>
+        </div>
     </div>
 {% endblock %}

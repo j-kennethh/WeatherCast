@@ -18,4 +18,5 @@ nav .navbar-brand .sage {
 .col p {
     display: -webkit-box;
     margin-right: auto;
+    margin-bottom: 1px;
 }

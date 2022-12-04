@@ -81,6 +81,44 @@ def weather(country, city):
             99: 'storm.png',
         }
 
+        desc = {
+            0: 'Clear Skies',
+
+            1: 'Mainly Clear Skies',
+            2: 'Partly Cloudy',
+            3: 'Overcast',
+
+            45: 'Fog',
+            48: 'Depositing Rime Fog',
+
+            51: 'Light Drizzle',
+            53: 'Moderate Drizzle',
+            55: 'Heavy Drizzle',
+            56: 'Light Freezing Drizzle',
+            57: 'Heavy Freezing Drizzle',
+
+            61: 'Light Rain',
+            63: 'Moderate Rain',
+            65: 'Heavy Rain',
+            66: 'Light Freezing Rain',
+            67: 'Heavy Freezing Rain',
+
+            71: 'Light Snowfall',
+            73: 'Moderate Snowfall',
+            75: 'Heavy Snowfall',
+            77: 'Snow Grains',
+            85: 'Light Snow Showers',
+            86: 'Heavy Snow Showers',
+
+            80: 'Light Rain Showers',
+            81: 'Moderate Rain Showers',
+            82: 'Heavy Rain Showers',
+            95: 'Thunderstorms',
+            96: 'Thunderstorms',
+            99: 'Thunderstorms',
+        }
+
+        desc = desc[weather_res["current_weather"]["weathercode"]]
         filename = url_for('static', filename=f'{photo[weather_res["current_weather"]["weathercode"]]}')
 
-        return render_template('weather.html', city=city, country=country, data=weather_res, filename=filename)
+        return render_template('weather.html', city=city, country=country, data=weather_res, desc=desc, filename=filename)
