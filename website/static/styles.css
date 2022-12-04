@@ -1,12 +1,21 @@
-nav .navbar-brand
-{
+nav .navbar-brand {
     font-size: xx-large;
 }
-nav .navbar-brand .blue
-{
+nav .navbar-brand .blue {
     color: #033F63;
 }
-nav .navbar-brand .sage
-{
+nav .navbar-brand .sage {
     color: #7c9885;
+}
+.col img {
+    display: -webkit-box;
+    margin-left: auto;
+}
+.col h2 {
+    display: -webkit-box;
+    margin-right: auto;
+}
+.col p {
+    display: -webkit-box;
+    margin-right: auto;
 }
