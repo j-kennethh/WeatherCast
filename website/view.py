@@ -40,7 +40,7 @@ def weather(country, city):
     geo_res = geo_res[0]
     city, country, lat, lon = geo_res['name'], geo_res['country'], round(float(geo_res['lat']), 2), round(float(geo_res['lon']), 2)
 
-    weather_api = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true&timeformat=unixtime&timezone=auto'
+    weather_api = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true&daily=sunrise,sunset&timezone=auto'
     weather_res = requests.get(weather_api).json()
     pprint.pprint(weather_res)
 

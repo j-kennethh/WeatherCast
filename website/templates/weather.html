@@ -18,11 +18,12 @@
                 <div class="col">
                     <h2>{{ data.current_weather.temperature }}°C</h2>
                     <p>{{ desc }}</p>
+                    <p>{{ data.current_weather.windspeed }} km/h at {{ data.current_weather.winddirection }}°</p>
                 </div>
             </div>
         </div>
         <div class="mb-3">
-            <p> Wind: {{ data.current_weather.windspeed }} km/h at {{ data.current_weather.winddirection }}°</p>
+            <p>Sunrise at {{ data.daily.sunrise[0][-5:] }} | Sunset at {{ data.daily.sunset[0][-5:] }}</p>
         </div>
     </div>
 {% endblock %}
