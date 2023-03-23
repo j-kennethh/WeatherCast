@@ -1,5 +1,5 @@
 # Weatherlens
-A weather web application created using [Flask](https://flask.palletsprojects.com/en/2.2.x/), [OpenWeather](https://openweathermap.org/) and [OpenMeteo](https://open-meteo.com/en)
+A weather web application created using [OpenWeather](https://openweathermap.org/) and [OpenMeteo](https://open-meteo.com/en)
 
 ---
 
