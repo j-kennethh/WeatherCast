@@ -1,4 +1,4 @@
-# Weatherlens
+# WeatherCast
 A weather web application created using [OpenWeather](https://openweathermap.org/) and [OpenMeteo](https://open-meteo.com/en)
 
 ---
